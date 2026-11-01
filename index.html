@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ClipKaro — trim videos in your browser</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <h1>ClipKaro</h1>
+    <p class="sub">Trim a video right in your browser. The file never leaves your device — there is no upload and no server.</p>
+
+    <div id="dropZone" class="drop">
+      <p><b>Drop a video file here</b> or click to choose one</p>
+      <p class="small">MP4, WebM, MOV — whatever your browser can play</p>
+      <input id="fileInput" type="file" accept="video/*" hidden />
+    </div>
+
+    <section id="editor" class="editor" hidden>
+      <video id="player" controls playsinline></video>
+
+      <div class="row times">
+        <span>Start: <b id="startLabel">0:00</b></span>
+        <span>End: <b id="endLabel">0:00</b></span>
+        <span>Clip length: <b id="lenLabel">0:00</b></span>
+      </div>
+
+      <label class="slider">Start
+        <input id="startRange" type="range" min="0" max="0" step="0.1" value="0" />
+      </label>
+      <label class="slider">End
+        <input id="endRange" type="range" min="0" max="0" step="0.1" value="0" />
+      </label>
+
+      <div class="row buttons">
+        <button id="setStartBtn">Set start at playhead</button>
+        <button id="setEndBtn">Set end at playhead</button>
+        <button id="playSelBtn">Preview selection</button>
+        <label class="loop"><input id="loopChk" type="checkbox" /> Loop</label>
+      </div>
+
+      <div class="row buttons">
+        <button id="exportBtn" class="primary">Export clip (.webm)</button>
+        <button id="frameBtn">Save current frame (PNG)</button>
+      </div>
+
+      <div id="progressWrap" class="progress" hidden>
+        <div id="progressBar"></div>
+      </div>
+      <p id="status" class="status"></p>
+      <p id="downloadWrap"></p>
+      <img id="framePreview" class="frame" hidden alt="Captured frame" />
+    </section>
+
+    <footer>
+      <p>Tip: exporting records the selected part in real time, so a 20-second clip takes about 20 seconds. Chrome or Edge works best.</p>
+    </footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
